@@ -12,6 +12,7 @@ function Rodape() {
 export default Rodape;
 
 const Footer = styled.div`
+    background-color: #FFFFFF;
     position: fixed;
     bottom: 0;
     left: 0;
