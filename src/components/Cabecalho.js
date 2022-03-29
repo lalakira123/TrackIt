@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import Logo from "./../assets/Group 8.png";
+import Logo from "./../assets/img/Group 8.png";
 
 function Cabecalho() {
     return (

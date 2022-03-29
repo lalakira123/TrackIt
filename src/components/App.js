@@ -5,6 +5,9 @@ import TelaCadastro from "./TelaCadastro";
 import TelaHabitos from "./TelaHabitos";
 import TelaHoje from "./TelaHoje";
 
+import "./../assets/css/reset.css";
+import "./../assets/css/style.css";
+
 function App() {
     return (
         <BrowserRouter>
