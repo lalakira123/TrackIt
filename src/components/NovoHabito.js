@@ -20,17 +20,17 @@ function NovoHabito(props) {
         headers: { Authorization: `Bearer ${token}`}
     };
 
-    function toggle(valor, prop) {
+    function toggle(valor, dia) {
         if(dias.includes(valor)) {
             for(let i = 0; i < dias.length; i++) {
                 if(dias[i] === valor) {
                     dias.splice(i, 1);
-                    setClicou({...clicou, [prop]:false});
+                    setClicou({...clicou, [dia]:false});
                 }
             }
         } else {
             setDias([...dias, valor]);
-            setClicou({...clicou, [prop]:true});
+            setClicou({...clicou, [dia]:true});
         }
     }
 
@@ -41,8 +41,7 @@ function NovoHabito(props) {
                 parametrosPost,
                 config
             );
-            promise.then((resposta) => {
-                console.log(resposta.data);
+            promise.then(() => {
                 setNovoHabito(<></>);
                 setAtualiza(atualiza + 1);
             })

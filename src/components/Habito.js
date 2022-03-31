@@ -26,13 +26,13 @@ function Habito(props) {
         <Card>
             <Name>{name}</Name>
             <Dias>
-                <Dia>D</Dia>
-                <Dia>S</Dia>
-                <Dia>T</Dia>
-                <Dia>Q</Dia>
-                <Dia>Q</Dia>
-                <Dia>S</Dia>
-                <Dia>S</Dia>
+                <Dia selecionado={days.includes(0)}>D</Dia>
+                <Dia selecionado={days.includes(1)}>S</Dia>
+                <Dia selecionado={days.includes(2)}>T</Dia>
+                <Dia selecionado={days.includes(3)}>Q</Dia>
+                <Dia selecionado={days.includes(4)}>Q</Dia>
+                <Dia selecionado={days.includes(5)}>S</Dia>
+                <Dia selecionado={days.includes(6)}>S</Dia>
             </Dias>
             <Icone onClick={excluirHabito} src={Lixeira} alt="lixeira"/>
         </Card>
@@ -67,7 +67,8 @@ const Dia = styled.p`
     font-size: 20px;
     padding: 6px 10px;
     margin-right: 4px;
-    color: #DBDBDB;
+    color: ${props => props.selecionado ? "#FFFFFF" : "#DBDBDB"};
+    background-color: ${props => props.selecionado ? "#CFCFCF" : "#FFFFFF"};
 `
 
 const Icone = styled.img`

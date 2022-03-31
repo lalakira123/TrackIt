@@ -35,9 +35,8 @@ function TelaHabitos() {
 export default TelaHabitos;
 
 const Main = styled.main`
-    width: 100vw;
-    height: 100vh;
     background-color: #E5E5E5;
+    margin-bottom: 100px;
 `
 
 const MeusHabitos = styled.div`
