@@ -8,6 +8,7 @@ function NovoHabito(props) {
     const {setNovoHabito, token} = props;
     const [input, setInput] = useState("");
     const [dias, setDias] = useState([]);
+    const [clicou, setClicou] = useState({domingo:false, segunda:false, terca:false, quarta:false, quinta:false, sexta:false, sabado:false})
     const { atualiza, setAtualiza} = useContext(AtualizaContext);
 
     const parametrosPost = {
@@ -19,15 +20,17 @@ function NovoHabito(props) {
         headers: { Authorization: `Bearer ${token}`}
     };
 
-    function toggle(valor) {
+    function toggle(valor, prop) {
         if(dias.includes(valor)) {
             for(let i = 0; i < dias.length; i++) {
                 if(dias[i] === valor) {
                     dias.splice(i, 1);
+                    setClicou({...clicou, [prop]:false});
                 }
             }
         } else {
             setDias([...dias, valor]);
+            setClicou({...clicou, [prop]:true});
         }
     }
 
@@ -58,13 +61,13 @@ function NovoHabito(props) {
                     required
                 />
                 <Dias>
-                    <Dia onClick={() => toggle(0)}>D</Dia>
-                    <Dia onClick={() => toggle(1)}>S</Dia>
-                    <Dia onClick={() => toggle(2)}>T</Dia>
-                    <Dia onClick={() => toggle(3)}>Q</Dia>
-                    <Dia onClick={() => toggle(4)}>Q</Dia>
-                    <Dia onClick={() => toggle(5)}>S</Dia>
-                    <Dia onClick={() => toggle(6)}>S</Dia>
+                    <Dia selecionado={clicou.domingo} onClick={() => toggle(0, "domingo")}>D</Dia>
+                    <Dia selecionado={clicou.segunda} onClick={() => toggle(1, "segunda")}>S</Dia>
+                    <Dia selecionado={clicou.terca} onClick={() => toggle(2, "terca")}>T</Dia>
+                    <Dia selecionado={clicou.quarta} onClick={() => toggle(3, "quarta")}>Q</Dia>
+                    <Dia selecionado={clicou.quinta} onClick={() => toggle(4, "quinta")}>Q</Dia>
+                    <Dia selecionado={clicou.sexta} onClick={() => toggle(5, "sexta")}>S</Dia>
+                    <Dia selecionado={clicou.sabado} onClick={() => toggle(6, "sabado")}>S</Dia>
                 </Dias>
                 <Botoes>
                     <Cancelar onClick={() => setNovoHabito(<></>)}>Cancelar</Cancelar>
@@ -105,7 +108,8 @@ const Dia = styled.p`
     font-size: 20px;
     padding: 6px 10px;
     margin-right: 4px;
-    color: #DBDBDB;
+    color: ${props => props.selecionado ? "#FFFFFF" : "#DBDBDB"};
+    background-color: ${props => props.selecionado ? "#CFCFCF" : "#FFFFFF"};
 `
 
 const Botoes = styled.div`
