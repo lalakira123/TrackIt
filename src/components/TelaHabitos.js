@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styled from "styled-components";
 
 import Cabecalho from "./Cabecalho";
 import Rodape from "./Rodape";
 
+import TokenContext from "./../contexts/TokenContext";
+
 function TelaHabitos() {
     const [ novoHabito, setNovoHabito] = useState(<></>);
+
+    const { token } = useContext(TokenContext);
+    console.log(token);
 
     function adicionarHabito() {
         setNovoHabito(

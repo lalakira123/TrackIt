@@ -4,6 +4,7 @@ import styled from "styled-components";
 import axios from "axios";
 
 import ImageContext from "./../contexts/ImageContext";
+import TokenContext from "./../contexts/TokenContext";
 
 import Logo from "./../assets/img/Group 8.png";
 
@@ -15,14 +16,15 @@ function TelaLogin() {
 
     const navigate = useNavigate();
     const { setImage } = useContext(ImageContext);
+    const { setToken } = useContext(TokenContext);
 
     function logar(e) {
         e.preventDefault();
         const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", login);
         promise.then((resposta) => {
-            console.log(resposta.data);
             navigate("/habitos");
             setImage(resposta.data.image);
+            setToken(resposta.data.token);
         });
         promise.catch(() => alert("Não foi possível realizar o login"));
     }
