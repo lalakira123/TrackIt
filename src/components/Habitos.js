@@ -1,13 +1,15 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect, useContext} from "react";
 import styled from "styled-components";
 import axios from "axios";
 
 import Habito from "./Habito";
 
+import AtualizaContext from "../contexts/AtualizaContext";
+
 function Habitos(props) {
-    const [temHabito, setTemHabito] = useState(false);
     const [habitos, setHabitos] = useState([]);
     const {token} = props;
+    const {atualiza} = useContext(AtualizaContext);
 
     useEffect(() => {
         const config = {
@@ -16,21 +18,25 @@ function Habitos(props) {
         const promessa = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", config);
         promessa.then((resposta) => {
             const {data} = resposta;
-            console.log(data);
             if(data.length > 0){
-                setTemHabito(true);
                 setHabitos(data);
             }
         });
-        promessa.catch((erro) => console.log(erro.response));
-    }, [token]);
+        promessa.catch(() => console.log("Tente Novamente"));
+    }, [token, atualiza]);
 
-    return temHabito ? (
+    return habitos.length > 0 ? (
         <>
             {habitos.map((habito) => {
                 const {name, days, id} = habito;
                     return(
-                        <Habito name={name} days={days} key={id}/>
+                        <Habito 
+                            key={id} 
+                            name={name} 
+                            days={days} 
+                            id={id} 
+                            token={token}
+                        />
                     );
                 })
             }

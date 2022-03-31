@@ -29,24 +29,32 @@ function TelaCadastro() {
            <img src={Logo} alt="Logo"/>
            <Form onSubmit={cadastrar}>
                <Input 
-                placeholder="email" 
-                onChange={(e) => setCadastro({...cadastro, email: e.target.value})}
-                value={cadastro.email}
+                    placeholder="email" 
+                    onChange={(e) => setCadastro({...cadastro, email: e.target.value})}
+                    value={cadastro.email}
+                    required
+                    type="email"
                 />
                <Input 
-                placeholder="senha"
-                onChange={(e) => setCadastro({...cadastro, password: e.target.value})}
-                value={cadastro.password}
+                    placeholder="senha"
+                    onChange={(e) => setCadastro({...cadastro, password: e.target.value})}
+                    value={cadastro.password}
+                    required
+                    type="password"
                 />
                <Input 
-                placeholder="nome"
-                onChange={(e) => setCadastro({...cadastro, name: e.target.value})}
-                value={cadastro.name}
+                    placeholder="nome"
+                    onChange={(e) => setCadastro({...cadastro, name: e.target.value})}
+                    value={cadastro.name}
+                    required
+                    type="text"
                 />
                <Input 
-                placeholder="foto"
-                onChange={(e) => setCadastro({...cadastro, image: e.target.value})}
-                value={cadastro.image}
+                    placeholder="foto"
+                    onChange={(e) => setCadastro({...cadastro, image: e.target.value})}
+                    value={cadastro.image}
+                    required
+                    type="text"
                 />
                <Button type="submit">Cadastrar</Button>
            </Form>

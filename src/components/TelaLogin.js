@@ -37,11 +37,15 @@ function TelaLogin() {
                     placeholder="email"
                     onChange={(e) => setLogin({...login, email: e.target.value})}
                     value={login.email}
+                    required
+                    type="email"
                 />
                 <Input 
                     placeholder="senha"
                     onChange={(e) => setLogin({...login, password: e.target.value})}
                     value={login.password}
+                    required
+                    type="password"
                 />
                 <Button type="submit">Entrar</Button>
 

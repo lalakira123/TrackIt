@@ -1,9 +1,27 @@
 import styled from "styled-components";
+import axios from "axios";
+import { useContext } from "react";
+
+import AtualizaContext from "../contexts/AtualizaContext";
 
 import Lixeira from "./../assets/img/lixeira.png";
 
 function Habito(props) {
-    const {name, days} = props;
+    const {atualiza, setAtualiza} = useContext(AtualizaContext);
+    const {name, days, id, token} = props;
+
+    const config = {
+        headers: { Authorization: `Bearer ${token}`}
+    };
+
+    function excluirHabito() {
+        if(window.confirm("Tem certeza que gostaria de deletar este hábito?")) {
+            const promessa = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`,config);
+            promessa.then(() => setAtualiza(atualiza + 1));
+            promessa.catch(() => alert("Não foi possível deletar o hábito"));
+        }
+    }
+
     return (
         <Card>
             <Name>{name}</Name>
@@ -16,7 +34,7 @@ function Habito(props) {
                 <Dia>S</Dia>
                 <Dia>S</Dia>
             </Dias>
-            <Icone src={Lixeira} alt="lixeira"/>
+            <Icone onClick={excluirHabito} src={Lixeira} alt="lixeira"/>
         </Card>
     );
 }   

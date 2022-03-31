@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styled from "styled-components";
 import axios from "axios";
+
+import AtualizaContext from "../contexts/AtualizaContext";
 
 function NovoHabito(props) {
     const {setNovoHabito, token} = props;
     const [input, setInput] = useState("");
     const [dias, setDias] = useState([]);
+    const { atualiza, setAtualiza} = useContext(AtualizaContext);
 
     const parametrosPost = {
         name: input,
@@ -30,15 +33,20 @@ function NovoHabito(props) {
 
     function enviarHabito(e) {
         e.preventDefault();
-        const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits",
-            parametrosPost,
-            config
-        );
-        promise.then((resposta) => {
-            console.log(resposta.data);
-            setNovoHabito(<></>);
-        })
-        promise.catch(() => alert("Não foi possível salvar o hábito"))
+        if (dias.length !== 0) {
+            const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits",
+                parametrosPost,
+                config
+            );
+            promise.then((resposta) => {
+                console.log(resposta.data);
+                setNovoHabito(<></>);
+                setAtualiza(atualiza + 1);
+            })
+            promise.catch(() => alert("Não foi possível salvar o hábito"))
+        } else {
+            alert("Por favor, selecione pelo menos um dia da semana!");
+        }
     }
 
     return (
@@ -46,9 +54,11 @@ function NovoHabito(props) {
             <form onSubmit={enviarHabito}>
                 <Input 
                     placeholder="nome do hábito"
-                    onChange={(e) => setInput(e.target.value)}/>
+                    onChange={(e) => setInput(e.target.value)}
+                    required
+                />
                 <Dias>
-                    <Dia onClick={() => toggle(7)}>D</Dia>
+                    <Dia onClick={() => toggle(0)}>D</Dia>
                     <Dia onClick={() => toggle(1)}>S</Dia>
                     <Dia onClick={() => toggle(2)}>T</Dia>
                     <Dia onClick={() => toggle(3)}>Q</Dia>
