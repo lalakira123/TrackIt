@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
+
+import ImageContext from "./../contexts/ImageContext";
 
 import Logo from "./../assets/img/Group 8.png";
 
@@ -12,6 +14,7 @@ function TelaLogin() {
     });
 
     const navigate = useNavigate();
+    const { setImage } = useContext(ImageContext);
 
     function logar(e) {
         e.preventDefault();
@@ -19,6 +22,7 @@ function TelaLogin() {
         promise.then((resposta) => {
             console.log(resposta.data);
             navigate("/habitos");
+            setImage(resposta.data.image);
         });
         promise.catch(() => alert("Não foi possível realizar o login"));
     }

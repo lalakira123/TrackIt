@@ -1,12 +1,14 @@
 import styled from "styled-components";
+import { useContext } from "react";
 
-import Logo from "./../assets/img/Group 8.png";
+import ImageContext from "./../contexts/ImageContext";
 
 function Cabecalho() {
+    const { image } = useContext(ImageContext);
     return (
         <Header>
             <Titulo>TrackIt</Titulo>
-            <Imagem src={Logo} alt="perfil" />
+            <Imagem src={image} alt="perfil" />
         </Header>
     );
 }
