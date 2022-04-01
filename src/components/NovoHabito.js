@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { ThreeDots } from "react-loader-spinner";
 
 import AtualizaContext from "../contexts/AtualizaContext";
 
@@ -9,6 +10,8 @@ function NovoHabito(props) {
     const [input, setInput] = useState("");
     const [dias, setDias] = useState([]);
     const [clicou, setClicou] = useState({domingo:false, segunda:false, terca:false, quarta:false, quinta:false, sexta:false, sabado:false})
+    const [carregando, setCarregando] = useState(false);
+    
     const { atualiza, setAtualiza} = useContext(AtualizaContext);
 
     const parametrosPost = {
@@ -37,6 +40,7 @@ function NovoHabito(props) {
     function enviarHabito(e) {
         e.preventDefault();
         if (dias.length !== 0) {
+            setCarregando(true);
             const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits",
                 parametrosPost,
                 config
@@ -44,8 +48,11 @@ function NovoHabito(props) {
             promise.then(() => {
                 setNovoHabito(<></>);
                 setAtualiza(atualiza + 1);
-            })
-            promise.catch(() => alert("Não foi possível salvar o hábito"))
+            });
+            promise.catch(() => {
+                alert("Não foi possível salvar o hábito")
+                setCarregando(false);
+            });
         } else {
             alert("Por favor, selecione pelo menos um dia da semana!");
         }
@@ -58,6 +65,7 @@ function NovoHabito(props) {
                     placeholder="nome do hábito"
                     onChange={(e) => setInput(e.target.value)}
                     required
+                    disabled={carregando}
                 />
                 <Dias>
                     <Dia selecionado={clicou.domingo} onClick={() => toggle(0, "domingo")}>D</Dia>
@@ -69,8 +77,14 @@ function NovoHabito(props) {
                     <Dia selecionado={clicou.sabado} onClick={() => toggle(6, "sabado")}>S</Dia>
                 </Dias>
                 <Botoes>
-                    <Cancelar onClick={() => setNovoHabito(<></>)}>Cancelar</Cancelar>
-                    <Salvar type="submit">Salvar</Salvar>
+                    <Cancelar disabled={carregando} onClick={() => setNovoHabito(<></>)}>Cancelar</Cancelar>
+                    <Salvar type="submit" disabled={carregando}>
+                        {carregando ? 
+                            (<ThreeDots height="38px" width="48px" color='#FFFFFF' ariaLabel='loading'/>)
+                            :
+                            (<p>Salvar</p>)
+                        }
+                    </Salvar>
                 </Botoes>
             </form>
         </NovoCard>
@@ -133,6 +147,9 @@ const Salvar = styled.button`
     border: none;
     font-size: 16px;
     color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `
 
 const Cancelar = styled.button`

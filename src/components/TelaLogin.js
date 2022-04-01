@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
+import { ThreeDots } from "react-loader-spinner";
 
 import ImageContext from "./../contexts/ImageContext";
 import TokenContext from "./../contexts/TokenContext";
@@ -13,6 +14,7 @@ function TelaLogin() {
         email:"",
         password:""
     });
+    const [carregando, setCarregando] = useState(false);
 
     const navigate = useNavigate();
     const { setImage } = useContext(ImageContext);
@@ -20,13 +22,17 @@ function TelaLogin() {
 
     function logar(e) {
         e.preventDefault();
+        setCarregando(true);
         const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", login);
         promise.then((resposta) => {
             navigate("/hoje");
             setImage(resposta.data.image);
             setToken(resposta.data.token);
         });
-        promise.catch(() => alert("Não foi possível realizar o login"));
+        promise.catch(() => {
+            alert("Não foi possível realizar o login")
+            setCarregando(false);
+        });
     }
 
     return (
@@ -39,6 +45,7 @@ function TelaLogin() {
                     value={login.email}
                     required
                     type="email"
+                    disabled={carregando}
                 />
                 <Input 
                     placeholder="senha"
@@ -46,9 +53,15 @@ function TelaLogin() {
                     value={login.password}
                     required
                     type="password"
+                    disabled={carregando}
                 />
-                <Button type="submit">Entrar</Button>
-
+                <Button type="submit" disabled={carregando}>
+                    {carregando ? 
+                        (<ThreeDots height="38px" width="48px" color='#FFFFFF' ariaLabel='loading'/>)
+                        :
+                        (<p>Entrar</p>)
+                    }
+                </Button>
             </Form> 
             <Link to="/cadastro">
                 <Cadastro>Não tem uma conta? Cadastre-se!</Cadastro>
@@ -98,6 +111,9 @@ const Button = styled.button`
     font-size: 21px;
     color: #FFFFFF;
     font-family: 'Lexend Deca', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `
 
 const Cadastro = styled.p`
