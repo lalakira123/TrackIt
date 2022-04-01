@@ -22,7 +22,7 @@ function TelaHoje() {
                 <Hoje>
                     <Titulo>{upperDate}</Titulo>
                     <Concluido>
-                        {concluido === 0 ? 
+                        {concluido === 0 || isNaN(concluido) ? 
                             <p>Nenhum hábito concluído ainda</p> 
                             : <Progresso>{concluido}% dos hábitos concluídos</Progresso> 
                         }
