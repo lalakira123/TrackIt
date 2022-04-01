@@ -2,11 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 
 import TokenContext from "./../contexts/TokenContext";
+import AtualizaContext from "./../contexts/AtualizaContext";
 
 import HabitoHoje from "./HabitoHoje";
 
 function HabitosHoje() {
     const { token } = useContext(TokenContext);
+    const { atualiza } = useContext(AtualizaContext);
     const config = {
         headers: {Authorization: `Bearer ${token}`}
     };
@@ -20,7 +22,7 @@ function HabitosHoje() {
             setHabitosDia(data);
         })
         promessa.catch(() => console.log("Carregando ..."));
-    },[token]); 
+    },[token, atualiza]); 
 
     return habitosDia.length > 0? (
         <>
