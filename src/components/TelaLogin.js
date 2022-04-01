@@ -97,6 +97,7 @@ const Button = styled.button`
     border-radius: 4.63636px;
     font-size: 21px;
     color: #FFFFFF;
+    font-family: 'Lexend Deca', sans-serif;
 `
 
 const Cadastro = styled.p`

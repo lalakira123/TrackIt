@@ -5,6 +5,7 @@ import TelaLogin from "./TelaLogin";
 import TelaCadastro from "./TelaCadastro";
 import TelaHabitos from "./TelaHabitos";
 import TelaHoje from "./TelaHoje";
+import TelaHistorico from "./TelaHistorico";
 
 import ImageContext from "./../contexts/ImageContext";
 import TokenContext from "./../contexts/TokenContext";
@@ -27,6 +28,7 @@ function App() {
                             <Route path="/cadastro" element={<TelaCadastro />} />
                             <Route path="/habitos" element={<TelaHabitos />} />
                             <Route path="/hoje" element={<TelaHoje />} />
+                            <Route path="/historico" element={<TelaHistorico />} />
                         </Routes>
                     </BrowserRouter>
                 </AtualizaContext.Provider>

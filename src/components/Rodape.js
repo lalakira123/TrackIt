@@ -10,7 +10,9 @@ function Rodape() {
             <Link to="/hoje">
                 <p>Hoje</p>
             </Link>
-            <Historico>Histórico</Historico>
+            <Link to="/historico">
+                <Historico>Histórico</Historico>
+            </Link>
         </Footer>
     );
 }
