@@ -1,9 +1,15 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function Rodape() {
     return (
         <Footer>
-            <Habitos>Hábitos</Habitos>
+            <Link to="/habitos">
+                <Habitos>Hábitos</Habitos>
+            </Link>
+            <Link to="/hoje">
+                <p>Hoje</p>
+            </Link>
             <Historico>Histórico</Historico>
         </Footer>
     );

@@ -22,7 +22,7 @@ function TelaLogin() {
         e.preventDefault();
         const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", login);
         promise.then((resposta) => {
-            navigate("/habitos");
+            navigate("/hoje");
             setImage(resposta.data.image);
             setToken(resposta.data.token);
         });

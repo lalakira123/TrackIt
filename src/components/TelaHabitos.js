@@ -20,9 +20,16 @@ function TelaHabitos() {
                 <MeusHabitos>
                     <Titulo>Meus hábitos</Titulo>
                     <Button 
-                        onClick={() => setNovoHabito(<NovoHabito setNovoHabito={setNovoHabito}
-                        token={token}
-                    />)}>+</Button>
+                        onClick={() => setNovoHabito(
+                                        <NovoHabito 
+                                            setNovoHabito={setNovoHabito}
+                                            token={token}
+                                        />
+                                    )
+                                }
+                    >
+                    +
+                    </Button>
                 </MeusHabitos>
                 {novoHabito}
                 <Habitos token={token}/>
