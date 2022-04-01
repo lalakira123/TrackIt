@@ -74,9 +74,9 @@ function TelaCadastro() {
                     }
                 </Button>
            </Form>
-           <Link to="/">
-                <Login>Já tem uma conta? Faça login!</Login>
-           </Link>
+           <Login>
+               <Link to="/">Já tem uma conta? Faça login!</Link>
+            </Login>
         </Container>
     );
 }
@@ -127,7 +127,8 @@ const Button = styled.button`
     justify-content: center;
 `
 
-const Login = styled.p`
+const Login = styled.div`
     margin-top: 25px;
     font-size: 14px;
+    text-decoration: underline;
 `

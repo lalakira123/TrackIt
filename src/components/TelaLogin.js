@@ -63,9 +63,9 @@ function TelaLogin() {
                     }
                 </Button>
             </Form> 
-            <Link to="/cadastro">
-                <Cadastro>Não tem uma conta? Cadastre-se!</Cadastro>
-            </Link>
+            <Cadastro>
+                <Link to="/cadastro">Não tem uma conta? Cadastre-se!</Link>
+            </Cadastro>
         </Container>
     )
 }
@@ -116,7 +116,8 @@ const Button = styled.button`
     justify-content: center;
 `
 
-const Cadastro = styled.p`
+const Cadastro = styled.div`
     margin-top: 25px;
     font-size: 14px;
+    text-decoration: underline;
 `
