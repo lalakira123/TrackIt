@@ -94,6 +94,12 @@ const Input = styled.input`
     border: 1px solid #D5D5D5;
     box-sizing: border-box;
     border-radius: 5px;
+    font-size: 20px;
+    padding-left: 11px;
+    font-family: 'Lexend Deca', sans-serif;
+    &::placeholder {
+        color: #DBDBDB;
+    }
 `
 
 const Dias = styled.div`
@@ -123,6 +129,7 @@ const Salvar = styled.button`
     margin-left:20px;
     background: #52B6FF;
     border-radius: 4.63636px;
+    font-family: 'Lexend Deca', sans-serif;
     border: none;
     font-size: 16px;
     color: #FFFFFF;
@@ -132,6 +139,7 @@ const Cancelar = styled.button`
     border: none;
     background-color: #FFFFFF;
     font-size: 16px;
+    font-family: 'Lexend Deca', sans-serif;
     color: #52B6FF;
     font-weight: 400;
 `

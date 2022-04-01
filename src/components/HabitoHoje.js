@@ -40,13 +40,13 @@ function HabitoHoje(props) {
 
     return (
         <Card onClick={toogle}>
-            <div>
+            <Info>
                 <Titulo>{name}</Titulo>
                 <Recordes>
                     <p>Sequência atual: <Selecionado selecionado={selecionado}>{currentSequence} dias</Selecionado></p>
                     <p>Seu recorde: <Recorde bateuRecorde={bateuRecorde}>{highestSequence} dias</Recorde></p>
                 </Recordes>
-            </div>
+            </Info>
             <Icone selecionado={selecionado}>
                 <ion-icon name="checkmark-outline"></ion-icon>
             </Icone>
@@ -67,6 +67,10 @@ const Card = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+`
+
+const Info = styled.div`
+    width: 70%;
 `
 
 const Titulo = styled.p`

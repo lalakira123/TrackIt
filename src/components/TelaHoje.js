@@ -15,14 +15,14 @@ function TelaHoje() {
             <Cabecalho/>
             <Main >
                 <Hoje>
-                        <Titulo>{upperDate}</Titulo>
-                        <Concluido>Nenhum hábito concluído ainda</Concluido>
+                    <Titulo>{upperDate}</Titulo>
+                    <Concluido>Nenhum hábito concluído ainda</Concluido>
                 </Hoje>
                 <HabitosHoje />
             </Main>
             <Rodape />
         </>
-    )
+    );
 }
 
 export default TelaHoje;

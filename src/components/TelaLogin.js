@@ -81,6 +81,12 @@ const Input = styled.input`
     border: 1px solid #D5D5D5;
     box-sizing: border-box;
     border-radius: 5px;
+    font-size: 20px;
+    padding-left: 11px;
+    font-family: 'Lexend Deca', sans-serif;
+    &::placeholder {
+        color: #DBDBDB;
+    }
 `
 
 const Button = styled.button`
