@@ -15,7 +15,6 @@ function TelaLogin() {
         password:""
     });
     const [carregando, setCarregando] = useState(false);
-
     const navigate = useNavigate();
     const { setImage } = useContext(ImageContext);
     const { setToken } = useContext(TokenContext);
@@ -28,6 +27,8 @@ function TelaLogin() {
             navigate("/hoje");
             setImage(resposta.data.image);
             setToken(resposta.data.token);
+            localStorage.setItem("token", resposta.data.token);
+            localStorage.setItem("image", resposta.data.image);
         });
         promise.catch(() => {
             alert("Não foi possível realizar o login")

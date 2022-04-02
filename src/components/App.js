@@ -16,10 +16,29 @@ import "./../assets/css/reset.css";
 import "./../assets/css/style.css";
 
 function App() {
-    const [image, setImage] = useState("");
-    const [token, setToken] = useState("");
+    const [image, setImage] = useState(pegarDadosLocalImagem);
+    const [token, setToken] = useState(pegarDadosLocalToken);
     const [atualiza, setAtualiza] = useState(0);
     const [concluido, setConcluido] = useState(0);
+
+    function pegarDadosLocalToken() {
+        const tokenLocal = localStorage.getItem("token");
+        if (tokenLocal) {
+            return tokenLocal;
+        } else {
+            return "";
+        }
+    }
+
+    function pegarDadosLocalImagem() {
+        const imagemLocal = localStorage.getItem("image");
+        if (imagemLocal) {
+            return imagemLocal;
+        } else {
+            return "";
+        }
+    }
+
     return (
         <TokenContext.Provider value={{token, setToken}}>
             <ImageContext.Provider value={{image, setImage}}>
