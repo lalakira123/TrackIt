@@ -101,4 +101,7 @@ const Icone = styled.div`
     font-size: 40px;
     border: 1px solid #E7E7E7;
     border-radius: 5px;
+    Ion-icon { 
+    --ionicon-stroke-width: 80px;
+    }
 `
