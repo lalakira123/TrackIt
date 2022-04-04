@@ -19,9 +19,14 @@ function TelaLogin() {
     const { setImage } = useContext(ImageContext);
     const { setToken } = useContext(TokenContext);
 
+    function resetarToken() {
+        setToken("");
+    }
+
     function logar(e) {
         e.preventDefault();
         setCarregando(true);
+        resetarToken();
         const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", login);
         promise.then((resposta) => {
             navigate("/hoje");
